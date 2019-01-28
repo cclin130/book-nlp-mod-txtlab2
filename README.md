@@ -1,3 +1,37 @@
+# book-nlp-mod-txtlab
+Modified version of dbamman's book-nlp with character gender reported for txtlab @McGill's research purposes.
+
+
+## MODIFICATION
+The following is a modified version of BookNLP which includes character gender data in the output token table and html file. 
+The modifications where made to suit the needs of .txtLab at McGill in there Literary data mining tasks.
+
+
+Gender:
+* 1 = female
+* 2 = male
+* 3 = other/unknown
+
+
+To run the pipeline on a corpus of txt files, uses runBookNLP.py as follows:
+
+    python runBookNLP.py <corpusdirectoryname>
+
+
+The html outputs are found in data/output and the token tables in data/tokens.
+
+
+
+Eva.P. 17/06/2017
+
+
+BookNLP:
+David Bamman, Ted Underwood and Noah Smith, "A Bayesian Mixed Effects Model of Literary Character," ACL 2014.
+
+
+
+## ORIGINAL README FROM BookNLP
+
 BookNLP
 =======
 
