@@ -7,7 +7,9 @@ Modified version of eporte2's wrapper for dbamman's book-nlp package.
 [in progress]
 
 C. Lin. 27/01/19
+
 book-nlp-mod-txtlab: Eva.P. 17/06/2017
+
 BookNLP:
 David Bamman, Ted Underwood and Noah Smith, "A Bayesian Mixed Effects Model of Literary Character," ACL 2014.
 
