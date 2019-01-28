@@ -2,7 +2,9 @@
 
 Modified version of eporte2's wrapper for dbamman's book-nlp package.
 
-## MODIFICATION
+## Modifications by cclin130
+
+[in progress]
 
 C. Lin. 27/01/19
 book-nlp-mod-txtlab: Eva.P. 17/06/2017
@@ -11,7 +13,7 @@ David Bamman, Ted Underwood and Noah Smith, "A Bayesian Mixed Effects Model of L
 
 
 
-## ORIGINAL MODIFICATIONS BY EPORTE2
+## Original README from eporte2's mod
 
 Modified version of dbamman's book-nlp with character gender reported for txtlab @McGill's research purposes.
 
@@ -46,7 +48,7 @@ David Bamman, Ted Underwood and Noah Smith, "A Bayesian Mixed Effects Model of L
 
 
 
-## ORIGINAL README FROM BookNLP
+## Original README from dbamman's book-nlp
 
 BookNLP
 =======
