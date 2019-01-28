@@ -186,3 +186,19 @@ Parsing time: 00:02:14 (134549 ms)
   Classifier           : liblinear
   Data Format          : /engmalt.linear-1.7/conllx.xml
 Parsing time: 00:02:16 (136676 ms)
+  Transition system    : Projective
+  Parser configuration : Stack
+  Feature model        : eng-liblinear.xml
+  Classifier           : liblinear
+  Data Format          : /engmalt.linear-1.7/conllx.xml
+Parsing time: 00:01:55 (115239 ms)
+  Transition system    : Projective
+  Parser configuration : Stack
+  Feature model        : eng-liblinear.xml
+  Classifier           : liblinear
+  Data Format          : /engmalt.linear-1.7/conllx.xml
+  Transition system    : Projective
+  Parser configuration : Stack
+  Feature model        : eng-liblinear.xml
+  Classifier           : liblinear
+  Data Format          : /engmalt.linear-1.7/conllx.xml
