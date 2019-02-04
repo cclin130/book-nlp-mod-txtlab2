@@ -3,7 +3,7 @@ import sys
 
 def replace_spaces(parent_path):
     for filepath in os.listdir(parent_path):
-        new_path = os.path.join(parent_path, filepath.replace(' ', '_'))
+        new_path = os.path.join(parent_path, filepath.replace(' ', '_').replace('\'', ''))
         os.rename(os.path.join(parent_path, filepath), new_path)
 
         #if filepath is a folder
