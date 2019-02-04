@@ -1,27 +1,30 @@
 ## By Eva Portelance - June 20, 2017
 ## Usage: runBookNLP.py <directorynameforbooks>
-import os , sys , csv
+import os, sys, csv
 
 femPRP = {'she','herself', 'ms.','ms','miss','mrs.','mrs','madam','lady'}
 masPRP = {'he','himself', 'mr.','mr','sir', 'mister','lord'}
 
-def run_book_nlp(parent_path):
+def run_book_nlp(parent_path, subpath_for_output):
         for filepath in os.listdir(parent_path):
+            full_path = os.path.join(parent_path, filepath)
+
+            #if fullpath leads to a text file
             if filepath.endswith('.txt'):
-                command = './runjava novels/BookNLP -doc ' + parent_path + '/' + filename + ' -printHTML -p data/output/' + filename + '.result' + ' -tok data/tokens/' + filename + '.tokens.csv -f'
+                print('\n---------Running bookNLP for '+ full_path +'----------\n')
+
+                command = './runjava novels/BookNLP -doc ' + parent_path +'/'+ filepath \
+                          + ' -printHTML -p data/output/' + subpath_for_output+'/'+filepath + '.result' \
+                          + ' -tok data/tokens/' + subpath_for_output+'/'+filepath + '.tokens.csv -f'
                 os.system(command)
 
-            # if filepath is a folder
-            if os.path.isdir(new_path):
-                replace(new_path)
+            # if full path is a folder directory
+            if os.path.isdir(full_path):
+                print('\n---------'+filepath+' is a directory----------\n')
+                run_book_nlp(parent_path+'/'+filepath, filepath)
 
-
-run_book_nlp(sys.argv[1])
-
-for filename in os.listdir(datadir):
-    if filename.endswith('.txt'):
-        command = './runjava novels/BookNLP -doc '+datadir+'/'+filename+' -printHTML -p data/output/'+filename+'.result'+' -tok data/tokens/'+filename+'.tokens.csv -f'
-        os.system(command)
+print('corpus root directory: '+ sys.argv[1])
+run_book_nlp(sys.argv[1], "")
 
 #
 # datadir = "data/tokens"
