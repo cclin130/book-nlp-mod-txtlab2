@@ -4,7 +4,23 @@ Modified version of eporte2's wrapper for dbamman's book-nlp package.
 
 ## Modifications by cclin130
 
-[in progress]
+In summary, the modifications of eporte2's repository were to address the fact that the corpus may have subfolders (to organize the texts)
+and it may have spaces in the directory names.
+
+### Added remove_spaces.py script
+Created a script that traverses corpus recursively and removes all spaces and apostrophes from filepath. This is because the bookNLP
+command is incompatible with directories that have spaces or apostrophes. To run the script, use the following command:
+
+```
+python remove_spaces.py <corpus directory>
+```
+This should be run BEFORE runBookNLP.py is run.
+
+### Refactored runBookNLP.py to be recursive
+The modified runBookNLP python script traverses the corpus directory recursively, running book-nlp and the gender feature on each file. Furthermore,
+the token files are outputted into the data/output folder with the corpus' filepath tree structure preserved. This way, output files corresponding
+to textfiles that are in the corpus' subfolders will be found in a corresponding subfolder in the output directory.
+
 
 C. Lin. 27/01/19
 
