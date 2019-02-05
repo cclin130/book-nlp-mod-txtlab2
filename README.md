@@ -21,6 +21,12 @@ The modified runBookNLP python script traverses the corpus directory recursively
 the token files are outputted into the data/output folder with the corpus' filepath tree structure preserved. This way, output files corresponding
 to textfiles that are in the corpus' subfolders will be found in a corresponding subfolder in the output directory.
 
+It can still be run using the following command:
+
+```
+python runBookNLP.py <corpusdirectoryname>
+```
+
 
 C. Lin. 27/01/19
 
