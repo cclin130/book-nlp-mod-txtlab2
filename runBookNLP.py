@@ -7,6 +7,9 @@ femPRP = {'she','herself', 'ms.','ms','miss','mrs.','mrs','madam','lady'}
 masPRP = {'he','himself', 'mr.','mr','sir', 'mister','lord'}
 
 def run_book_nlp(parent_path, subpath_for_output):
+    if len(subpath_for_output) >0:
+        subpath_for_output += '/'
+
     for filepath in os.listdir(parent_path):
         full_path = os.path.join(parent_path, filepath)
 
@@ -15,12 +18,12 @@ def run_book_nlp(parent_path, subpath_for_output):
             print('\n---------Running bookNLP for '+ full_path +'----------\n')
 
             command = './runjava novels/BookNLP -doc ' + parent_path +'/'+ filepath \
-                      + ' -printHTML -p data/output/' + subpath_for_output+'/'+filepath + '.result' \
-                      + ' -tok data/tokens/' + subpath_for_output+'/'+filepath + '.tokens.csv -f'
+                      + ' -printHTML -p data/output/' + subpath_for_output+filepath + '.result' \
+                      + ' -tok data/tokens/' + subpath_for_output+filepath + '.tokens.csv -f'
             os.system(command)
 
             print('\n---------Running gender feature for ' + full_path + '----------\n')
-            add_gender('data/tokens/'+subpath_for_output+'/'+filepath+'.tokens.csv')
+            add_gender('data/tokens/'+subpath_for_output+filepath+'.tokens.csv')
 
         # if full path is a folder directory
         if os.path.isdir(full_path):
