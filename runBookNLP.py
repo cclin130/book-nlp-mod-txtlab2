@@ -10,30 +10,30 @@ def run_book_nlp(parent_path, subpath_for_output):
     if len(subpath_for_output) >0:
         subpath_for_output += '/'
 
-    for filepath in os.listdir(parent_path):
-        full_path = os.path.join(parent_path, filepath)
+    for file_path in os.listdir(parent_path):
+        full_path = os.path.join(parent_path, file_path)
 
         #if fullpath leads to a text file
-        if filepath.endswith('.txt'):
+        if file_path.endswith('.txt'):
             print('\n---------Running bookNLP for '+ full_path +'----------\n')
 
-            command = './runjava novels/BookNLP -doc ' + parent_path +'/'+ filepath \
-                      + ' -printHTML -p data/output/' + subpath_for_output+filepath + '.result' \
-                      + ' -tok data/tokens/' + subpath_for_output+filepath + '.tokens.csv -f'
+            command = './runjava novels/BookNLP -doc ' + parent_path +'/'+ file_path \
+                      + ' -printHTML -p data/output/' + subpath_for_output+file_path + '.result' \
+                      + ' -tok data/tokens/' + subpath_for_output+file_path + '.tokens.csv -f'
             os.system(command)
 
             print('\n---------Running gender feature for ' + full_path + '----------\n')
-            add_gender('data/tokens/'+subpath_for_output+filepath+'.tokens.csv')
+            add_gender('data/tokens/'+subpath_for_output+file_path+'.tokens.csv')
 
         # if full path is a folder directory
         if os.path.isdir(full_path):
-            print('\n---------'+filepath+' is a directory----------\n')
-            run_book_nlp(parent_path+'/'+filepath, filepath)
+            print('\n---------'+file_path+' is a directory----------\n')
+            run_book_nlp(parent_path+'/'+file_path, file_path)
 
 
-def add_gender(filepath):
+def add_gender(file_path):
     table = []
-    file = filepath
+    file = file_path
     with open(file, encoding='utf-8', mode='r+') as f:
         for line in f:
             table.append(line.strip('\n').split('\t'))
@@ -41,6 +41,7 @@ def add_gender(filepath):
     title = table[0]
     title.append('totalPRPgender')
     title.append('confidenceGender')
+    title.append('genderLabel')
     table = table[1:]
 
     characters = []
@@ -60,13 +61,18 @@ def add_gender(filepath):
                 elif line[9].lower() in masPRP:
                     mas+=1
         tot=fem+mas
+
+        # if more female than male pronouns, label as female (label = 1)
         if fem > mas:
             ratio = fem/tot
+            label = 1
+        # if more male than female pronouns, label as male (label = 2)
         elif fem < mas:
             ratio = mas/tot
+            label=2
         else:
             ratio = 0.5
-        genderCounts.append([c,[tot,ratio]])
+        genderCounts.append([c,[tot,ratio,label]])
 
     for line in table:
         if line[14] != '-1':
@@ -75,11 +81,14 @@ def add_gender(filepath):
                 if c[0] == line[14]:
                     line.append(c[1][0])
                     line.append(c[1][1])
+                    line.append(c[1][2])
                     found = True
             if not found:
                 line.append(0)
                 line.append(0.5)
+                line.append(0)
         else:
+            line.append(0)
             line.append(0)
             line.append(0)
     with open(file, encoding='utf-8', newline='', mode='w') as f:
