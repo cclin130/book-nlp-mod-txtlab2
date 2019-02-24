@@ -72,6 +72,7 @@ def add_gender(file_path):
             label=2
         else:
             ratio = 0.5
+            label=0
         genderCounts.append([c,[tot,ratio,label]])
 
     for line in table:
